@@ -4,4 +4,9 @@ class Payment < ApplicationRecord
     CAD = "cad",
     EUR = "eur",
   ].freeze
+  CURRENCY_UNITS = {
+    USD => '$',
+    CAD => '$',
+    EUR => '€',
+  }.freeze
 end

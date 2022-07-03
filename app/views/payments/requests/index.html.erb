@@ -2,27 +2,19 @@
 
 <table class="table">
   <thead>
-  <tr>
-    <th>Amount</th>
-    <th>Current</th>
-    <th>Description</th>
-  </tr>
+    <tr>
+      <th>Amount</th>
+      <th>Currency</th>
+      <th>Description</th>
+    </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-    <td>Malcolm Lockyer</td>
-    <td>1961</td>
-  </tr>
-  <tr>
-    <td>Witchy Woman</td>
-    <td>The Eagles</td>
-    <td>1972</td>
-  </tr>
-  <tr>
-    <td>Shining Star</td>
-    <td>Earth, Wind, and Fire</td>
-    <td>1975</td>
-  </tr>
+    <%- @payments.each do |payment| %>
+      <tr>
+        <td><%= display_amount(payment.amount, payment.currency) %></td>
+        <td><%= payment.currency.upcase %></td>
+        <td><%= payment.description %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
