@@ -73,6 +73,13 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'database_cleaner-active_record'
+  gem 'rails-controller-testing'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 gem "faker", "~> 2.21"

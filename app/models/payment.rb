@@ -20,8 +20,8 @@ class Payment < ApplicationRecord
 
   enum status: STATUSES.zip(STATUSES).to_h
 
-  validates_presence_of :amount, :currency, :status
-  before_create :set_default_status
+  validates_presence_of :amount, :currency
+  before_validation :set_default_status
 
   def set_default_status
     self.status = DRAFT unless status
