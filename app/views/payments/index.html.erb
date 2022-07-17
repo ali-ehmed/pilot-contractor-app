@@ -1,4 +1,7 @@
-<h1 class="font-bold text-4xl text-blue-500">Request Payments</h1>
+<div class="px-5">
+  <h1 class="font-bold text-4xl text-blue-500 mb-3">Payments</h1>
+  <%= link_to 'New Payment', new_payment_path, class: 'btn btn-outline-info' %>
+</div>
 
 <table class="table">
   <thead>
@@ -6,6 +9,8 @@
       <th>Amount</th>
       <th>Currency</th>
       <th>Description</th>
+      <th>Status</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -14,6 +19,12 @@
         <td><%= display_amount(payment.amount, payment.currency) %></td>
         <td><%= payment.currency.upcase %></td>
         <td><%= payment.description %></td>
+        <td><%= display_status(payment.status) %></td>
+        <td>
+          <%- if payment.draft? %>
+            <%= link_to 'Request Approval', '#' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

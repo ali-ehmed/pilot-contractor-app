@@ -1,0 +1,40 @@
+<div class="px-5">
+  <h1 class="font-bold text-4xl text-blue-500 mb-3">New Payment</h1>
+  <%= link_to '<- Back', payments_path %>
+</div>
+
+<div class="w-4/12">
+  <%= form_with model: @payment, data: { turbo: false } do |f| %>
+    <% if @payment.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h4>Errors:</h4>
+        <ul class="mb-0">
+          <% @payment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="mb-3">
+      <%= f.label :amount, class: "form-label" %>
+      <%= f.number_field :amount, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :currency, class: "form-label" %>
+      <%= f.select :currency, options_for_select(Payment::CURRENCIES.map { |c| [c.upcase, c] }), {}, { class: 'form-control' } %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :description, class: "form-label" %>
+      <%= f.text_field :description, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <div class="form-check">
+        <%= f.check_box :status, { class: 'form-check-input' }, Payment::DRAFT, Payment::PENDING %>
+        <%= f.label :status, 'Create a draft payment?', class: "form-check-label" %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <%= f.submit 'Create', class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

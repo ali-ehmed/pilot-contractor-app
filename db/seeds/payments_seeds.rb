@@ -23,7 +23,7 @@ class PaymentsSeeds
     {
       amount: Faker::Number.between(from: 300, to: 5000),
       currency: Payment::EUR,
-      description: "Monthly payment for hours workd (50)",
+      description: "Monthly payment for hours worked (50)",
     }
   ].freeze
 
@@ -31,7 +31,7 @@ class PaymentsSeeds
     return false if Payment.exists?
 
     data.each do |payment_data|
-      Payment.create(payment_data)
+      Payment.create!(payment_data)
     end
   end
 end
