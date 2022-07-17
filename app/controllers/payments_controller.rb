@@ -16,6 +16,12 @@ class PaymentsController < ApplicationController
     end
   end
 
+  def request_payment
+    @payment = Payment.find(params[:id])
+    @payment.request_payment_from_managers!(force: true)
+    redirect_to payments_path, notice: "Payment Request sent successfully"
+  end
+
   private
 
   def payment_params

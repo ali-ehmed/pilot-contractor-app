@@ -22,7 +22,7 @@
         <td><%= display_status(payment.status) %></td>
         <td>
           <%- if payment.draft? %>
-            <%= link_to 'Request Approval', '#' %>
+            <%= link_to 'Request Approval', request_payment_payment_path(payment), method: :put, data: { confirm: "Request for approval?" } %>
           <% end %>
         </td>
       </tr>

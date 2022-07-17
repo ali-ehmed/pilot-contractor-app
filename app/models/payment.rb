@@ -22,8 +22,26 @@ class Payment < ApplicationRecord
 
   validates_presence_of :amount, :currency
   before_validation :set_default_status
+  after_create_commit :request_payment_from_managers!
 
   def set_default_status
     self.status = DRAFT unless status
+  end
+
+  def request_payment_from_managers!(force: false)
+    ActiveRecord::Base.transaction do
+      begin
+        self.status = PENDING if draft? && force
+
+        if approved_at.nil? && (pending? || force)
+          update!(status: status, request_sent_at: Time.now)
+          data = self.as_json
+          data['initial_status'] = data.delete('status')
+          MessageBroker::RequestPayment.publish(data)
+        end
+      rescue StandardError
+        raise ActiveRecord::Rollback
+      end
+    end
   end
 end
