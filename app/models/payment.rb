@@ -26,10 +26,12 @@ class Payment < ApplicationRecord
   before_validation :set_default_status
   after_commit :request_payment_from_managers!, on: :create
 
+  # Sets a default status when no status is available
   def set_default_status
     self.status = DRAFT unless status
   end
 
+  # Updates request sent at column and send message to contractors app
   def request_payment_from_managers!(force: false)
     ActiveRecord::Base.transaction do
       begin
