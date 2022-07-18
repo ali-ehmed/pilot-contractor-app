@@ -16,7 +16,7 @@ module MessageBroker
     end
 
     def connection
-      @connection ||= Bunny.new.tap(&:start)
+      @connection ||= BunnyClient.connection.tap(&:start)
     end
   end
 end

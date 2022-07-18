@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
   def create
     @payment = Payment.new(payment_params)
     if @payment.save
-      redirect_to payments_path
+      redirect_to payments_path, notice: "Payment was successfully created"
     else
       render :new
     end

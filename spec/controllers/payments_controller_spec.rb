@@ -28,7 +28,7 @@ RSpec.describe PaymentsController, type: :controller do
     end
   end
 
-  describe '#crate' do
+  describe '#create' do
     let(:payment) { build(:payment) }
 
     it "creates payment" do
@@ -38,6 +38,7 @@ RSpec.describe PaymentsController, type: :controller do
       expect(assigns(:payment).valid?).to be_truthy
       expect(assigns(:payment).persisted?).to be_truthy
       expect(response).to redirect_to(payments_path)
+      expect(flash[:notice]).to eq('Payment was successfully created')
     end
 
     it "renders error" do
@@ -47,6 +48,18 @@ RSpec.describe PaymentsController, type: :controller do
       expect(assigns(:payment).valid?).to be_falsey
       expect(assigns(:payment).persisted?).to be_falsey
       expect(response).to render_template(:new)
+    end
+  end
+
+  describe '#request_payment' do
+    let(:payment) { create(:payment, status: Payment::DRAFT) }
+
+    it "sends request for payment approval" do
+      put :request_payment, params: { id: payment.id }
+      expect(assigns(:payment).status).to eql(Payment::PENDING)
+      expect(assigns(:payment).request_sent_at).to_not be_nil
+      expect(response).to redirect_to(payments_path)
+      expect(flash[:notice]).to eq('Payment Request sent successfully')
     end
   end
 end

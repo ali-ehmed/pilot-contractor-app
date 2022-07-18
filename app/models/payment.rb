@@ -22,7 +22,7 @@ class Payment < ApplicationRecord
 
   validates_presence_of :amount, :currency
   before_validation :set_default_status
-  after_create_commit :request_payment_from_managers!
+  after_commit :request_payment_from_managers!, on: :create
 
   def set_default_status
     self.status = DRAFT unless status

@@ -3,7 +3,7 @@ MANAGER_EXCHANGES = [
 ].freeze
 
 Sneakers.configure(
-  connection: Bunny.new,
+  connection: BunnyClient.connection,
   exchange_type: 'fanout',
   log: STDOUT,
   worker: 4,
