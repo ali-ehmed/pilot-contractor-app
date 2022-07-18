@@ -4,7 +4,7 @@ module MessageBroker
 
     class << self
       extend Forwardable
-      def_delegators :instance, :publish, :channel
+      def_delegators :instance, :publish, :channel, :connection
     end
 
     def publish
