@@ -31,9 +31,6 @@ RSpec.describe Payment, type: :model do
 
   context 'Instance Methods' do
     describe '#request_payment_from_managers!' do
-      before do
-        allow(MessageBroker::RequestPayment).to receive(:publish).and_return(nil)
-      end
       subject { create(:payment, :without_request_payment_callback) }
 
       context 'When status is draft' do
