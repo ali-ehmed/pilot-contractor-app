@@ -1,2 +1,3 @@
 web: bin/rails server -p $DEV_PORT
 css: bin/rails tailwindcss:watch
+sneaker: bin/rake sneakers:run

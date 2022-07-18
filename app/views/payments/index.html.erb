@@ -10,6 +10,7 @@
       <th>Currency</th>
       <th>Description</th>
       <th>Status</th>
+      <th>Approved At</th>
       <th></th>
     </tr>
   </thead>
@@ -20,6 +21,13 @@
         <td><%= payment.currency.upcase %></td>
         <td><%= payment.description %></td>
         <td><%= display_status(payment.status) %></td>
+        <td>
+          <% if payment.approved_at %>
+            <%= l(payment.approved_at, format: :long) %>
+          <% else %>
+            ---
+          <% end %>
+        </td>
         <td>
           <%- if payment.draft? %>
             <%= link_to 'Request Approval', request_payment_payment_path(payment), method: :put, data: { confirm: "Request for approval?" } %>
