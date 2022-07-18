@@ -11,3 +11,6 @@ db_seed:
 	./bin/rails db:seed
 
 application_setup: bundle db_reset db_seed
+
+test:
+	./bin/bundle exec rspec

@@ -14,6 +14,11 @@ Assuming you've docker installed on your machine. Run the following command to r
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
 ```
 
+### Clone Repo
+```shell
+git clone git@github.com:ali-ehmed/pilot-contractor-app.git
+```
+
 ### Setup Application
 ```shell
 make application_setup
@@ -22,4 +27,9 @@ make application_setup
 ### Start App
 ```shell
 make server
+```
+
+### Run tests
+```shell
+make test
 ```
