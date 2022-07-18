@@ -3,8 +3,10 @@
   <%= link_to 'New Payment', new_payment_path, class: 'btn btn-outline-info' %>
 </div>
 
-<table class="table">
-  <thead>
+<div>
+  <%= render_flash_messages %>
+  <table class="table">
+    <thead>
     <tr>
       <th>Amount</th>
       <th>Currency</th>
@@ -13,8 +15,8 @@
       <th>Approved At</th>
       <th></th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <%- @payments.each do |payment| %>
       <tr>
         <td><%= display_amount(payment.amount, payment.currency) %></td>
@@ -35,5 +37,6 @@
         </td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
