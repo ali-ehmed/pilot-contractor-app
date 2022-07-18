@@ -16,7 +16,7 @@ class Payment < ApplicationRecord
     PENDING = 'pending',
     APPROVED = 'approved',
     REJECTED = 'rejected',
-  ]
+  ].freeze
 
   enum status: STATUSES.zip(STATUSES).to_h
 
@@ -31,7 +31,7 @@ class Payment < ApplicationRecord
     self.status = DRAFT unless status
   end
 
-  # Updates request sent at column and send message to contractors app
+  # Updates status and request sent at column and send message to managers app
   def request_payment_from_managers!(force: false)
     ActiveRecord::Base.transaction do
       begin

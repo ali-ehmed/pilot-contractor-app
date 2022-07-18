@@ -1,4 +1,4 @@
-# Pilot Assignment: Contractors App
+# Pilot: Contractors App
 
 A simple application for payment requests where a contractor can request a payment from their manager. A payment request consists of amount, currency, and text description. The contractor should be able to see all of their payment requests, whether they're pending, accepted, or rejected.
 
