@@ -1,24 +1,25 @@
-# README
+# Pilot Assignment: Contractors App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple application for payment requests where a contractor can request a payment from their manager. A payment request consists of amount, currency, and text description. The contractor should be able to see all of their payment requests, whether they're pending, accepted, or rejected.
 
-Things you may want to cover:
+### Pre-requisites
+- Ruby 3.0.3
+- Postgres 14
+- RabbitHQ 3.10.6
 
-* Ruby version
+### For installing RabbitHQ
+Assuming you've docker installed on your machine. Run the following command to run rabbithq server
 
-* System dependencies
+```shell
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
+```
 
-* Configuration
+### Setup Application
+```shell
+make application_setup
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Start App
+```shell
+make server
+```
