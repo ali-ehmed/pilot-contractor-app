@@ -6,7 +6,7 @@ RSpec.describe PaymentsController, type: :controller do
 
     it "assigns @payments ordered by amount" do
       get :index
-      expect(assigns(:payments)).to eq(payments.sort_by(&:amount).reverse)
+      expect(assigns(:payments)).to eq(payments.sort_by(&:created_at).reverse)
     end
 
     it 'renders index template' do

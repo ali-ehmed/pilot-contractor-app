@@ -20,6 +20,8 @@ class Payment < ApplicationRecord
 
   enum status: STATUSES.zip(STATUSES).to_h
 
+  scope :latest, -> { order(created_at: :desc) }
+
   validates_presence_of :amount, :currency
   before_validation :set_default_status
   after_commit :request_payment_from_managers!, on: :create

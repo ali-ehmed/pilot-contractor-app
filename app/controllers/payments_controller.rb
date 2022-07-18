@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   def index
-    @payments = Payment.order(amount: :desc)
+    @payments = Payment.latest
   end
 
   def new
